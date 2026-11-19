@@ -1,0 +1,39 @@
+function paths = setupQDVoltageSelectedDualConverter()
+%SETUPQDVOLTAGESELECTEDDUALCONVERTER Add only this package's code to MATLAB.
+%   PATHS = SETUPQDVOLTAGESELECTEDDUALCONVERTER() adds the supported source,
+%   builder, demo, and test folders. Generated Simulink cache and code files
+%   are redirected to a temporary runtime folder instead of this package.
+
+packageRoot = fileparts(mfilename('fullpath'));
+folders = { ...
+    packageRoot; ...
+    fullfile(packageRoot,'builders'); ...
+    fullfile(packageRoot,'demos'); ...
+    fullfile(packageRoot,'tests'); ...
+    fullfile(packageRoot,'src','common'); ...
+    fullfile(packageRoot,'src','selector'); ...
+    fullfile(packageRoot,'src','downconverter'); ...
+    fullfile(packageRoot,'src','upconverter')};
+
+for folderIndex = 1:numel(folders)
+    if ~isfolder(folders{folderIndex})
+        error('QDConverter:PackageLayout', ...
+            'Required package folder is missing: %s',folders{folderIndex});
+    end
+    addpath(folders{folderIndex});
+end
+
+paths = qdPackagePaths();
+if ~strcmp(paths.packageRoot,packageRoot)
+    error('QDConverter:PackageShadowing', ...
+        ['Another QD converter package is shadowing this one. Remove the ' ...
+        'older package from the MATLAB path and run setup again.']);
+end
+
+if license('test','Simulink')
+    if ~isfolder(paths.cache), mkdir(paths.cache); end
+    if ~isfolder(paths.codegen), mkdir(paths.codegen); end
+    Simulink.fileGenControl('set','CacheFolder',paths.cache, ...
+        'CodeGenFolder',paths.codegen,'createDir',true);
+end
+end

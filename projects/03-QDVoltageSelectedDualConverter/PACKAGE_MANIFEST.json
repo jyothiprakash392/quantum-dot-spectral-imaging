@@ -1,0 +1,344 @@
+{
+  "schemaVersion": "1.0.0",
+  "package": "QDVoltageSelectedDualConverter",
+  "generatedAt": "2026-09-08 11:10:30 +0530",
+  "matlabVersion": "26.1.0.3312084 (R2026a) Update 4",
+  "validation": {
+    "passed": 24,
+    "failed": 0,
+    "report": "results/reports/validation-summary.md"
+  },
+  "fileCount": 66,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2780,
+      "sha256": "fd6e7efe3fe519b5ea73f6c5c1d5ae8fdd262895b75f313bd1ef02fe1f701245"
+    },
+    {
+      "path": "builders/buildAllQDModels.m",
+      "bytes": 443,
+      "sha256": "52a6c2359c41f8fd9031b37c91b754e836161a87e43398d36fa76460414995a4"
+    },
+    {
+      "path": "builders/buildQDSWIRUpconversionSpectrometer.m",
+      "bytes": 8347,
+      "sha256": "28761ebdb5491db2e47b6daeb98be728f7427c4e94f537e2d539ad6a12090c67"
+    },
+    {
+      "path": "builders/buildQDUVDownconverter.m",
+      "bytes": 11262,
+      "sha256": "bd6852f6bbab2e8d2ab4c514cb961d2d5b2bb5748152d2f93be0a9f5ee1a8910"
+    },
+    {
+      "path": "builders/buildQDVoltageSelectedDualConverter.m",
+      "bytes": 14788,
+      "sha256": "a50dd4e542888e092ead2d0cb16e7b81c9464cf410bcdbfad2044d8c45eb3756"
+    },
+    {
+      "path": "demos/exportQDModelDiagrams.m",
+      "bytes": 956,
+      "sha256": "ed65a11207611e19acb8606fb00d9ed62287a616311705492956646eeded1b66"
+    },
+    {
+      "path": "demos/runAllQDConverterDemos.m",
+      "bytes": 363,
+      "sha256": "5a1d6e53568ff2dda3e4e7065278631ab2656ae0dfd8494b9cc3618adeee5b7d"
+    },
+    {
+      "path": "demos/runQDSWIRUpconversionDemo.m",
+      "bytes": 5106,
+      "sha256": "d2594d637d1b7d605b3eb1b096c83904976f255e75858071b13c007f89632f31"
+    },
+    {
+      "path": "demos/runQDSelectorDemo.m",
+      "bytes": 5352,
+      "sha256": "5a72ca929ada62cac115c1def2a24963dca52829c170662e0464044441ae65da"
+    },
+    {
+      "path": "demos/runQDUVDownconverterDemo.m",
+      "bytes": 7850,
+      "sha256": "096b9110f20bec8751855c1309d4c0e3b8ffdd0758206a756aa99a92ccff047f"
+    },
+    {
+      "path": "docs/architecture.md",
+      "bytes": 1471,
+      "sha256": "79d63c343f75e267dbd8f478c80e256de253007bbbc246992db12efe880fedb2"
+    },
+    {
+      "path": "docs/calibration.md",
+      "bytes": 1806,
+      "sha256": "b8fe563099255edf1ae8875613a3fc61fcb0e7b58a86254f0af93e5e8ac66b80"
+    },
+    {
+      "path": "docs/migration.md",
+      "bytes": 1517,
+      "sha256": "c436fdd9a192ae503db04a0cadc048c4b1900cd96b6aeca2f11ed1b556cc52b9"
+    },
+    {
+      "path": "docs/physics-and-limitations.md",
+      "bytes": 1800,
+      "sha256": "b9b8bef080f104364e0f0c20bfe9d15d33ca7ecc10bdaf67a3c536af4fcd1be4"
+    },
+    {
+      "path": "models/QDSWIRUpconversionSpectrometer.slx",
+      "bytes": 55049,
+      "sha256": "3dc5ff467fe32094831c91db41ae6d7d6b0f9c805b6b0267ca9e8e23dcd20dc5"
+    },
+    {
+      "path": "models/QDUVDownconverter.slx",
+      "bytes": 70797,
+      "sha256": "2a9f7dd36cdde04c5e1237f2e6fda68fba3612ed1dd581e784c649fe5f85f21c"
+    },
+    {
+      "path": "models/QDVoltageSelectedDualConverter.slx",
+      "bytes": 71664,
+      "sha256": "029aab33a5afbbe9fc3bbdb06881ad5f6d7848b232517ff418781a355ff4341d"
+    },
+    {
+      "path": "openAllQDModels.m",
+      "bytes": 371,
+      "sha256": "106ba0b60d4208c7a0aabb22fadd7e416bca16e25285f160accb23e0d4d82023"
+    },
+    {
+      "path": "openQDSWIRUpconversionSpectrometer.m",
+      "bytes": 297,
+      "sha256": "6d415c89136383506d00805f579768dafae58022061c1624f81dcd600683d209"
+    },
+    {
+      "path": "openQDUVDownconverter.m",
+      "bytes": 254,
+      "sha256": "88acc37056d8bfb0d771fe08964ea54b6e770b9ebc070a7f14fe428458a0c482"
+    },
+    {
+      "path": "openQDVoltageSelectedDualConverter.m",
+      "bytes": 300,
+      "sha256": "1a5cda55e37708bbdbec5c50d4654a3fd10cc088940ca13cf4d162eefb163157"
+    },
+    {
+      "path": "results/figures/qd-voltage-selected-dual-converter-diagram.png",
+      "bytes": 539235,
+      "sha256": "0ee59b5eafa870813fd48ecfe2a4f3089656f7dac4e9c3bc7ee400b331b5a3ce"
+    },
+    {
+      "path": "results/figures/selector-transfer-characteristic.png",
+      "bytes": 201449,
+      "sha256": "c0ce4af0923433b9188dba670f03592b5d726f7343f3cd98ccfbf159baa91992"
+    },
+    {
+      "path": "results/figures/swir-upconversion-reconstruction.png",
+      "bytes": 324288,
+      "sha256": "1522bb2c8a18cfe0f791df56a8699eefda7bf4ad3a725514d09789c45e2cea8d"
+    },
+    {
+      "path": "results/figures/swir-upconversion-spectrometer-diagram.png",
+      "bytes": 247455,
+      "sha256": "5460ee9f14a63273cc29a3c41ab3fdb5c62fb84d79281472d8d29aa6e7919ee6"
+    },
+    {
+      "path": "results/figures/uv-downconverter-channel-metrics.png",
+      "bytes": 384612,
+      "sha256": "5348b9115aaa1dfc5c35cdcab7b6f501231ef65499b4bd222ca629473c44cc91"
+    },
+    {
+      "path": "results/figures/uv-downconverter-diagram.png",
+      "bytes": 397181,
+      "sha256": "695bd8e643df074972c3ca43bc1a8f0a52ee051d5fb0e4f972e66caddaae7021"
+    },
+    {
+      "path": "results/reports/swir-upconversion-demo.txt",
+      "bytes": 549,
+      "sha256": "222cb09a8d3481a63e4af65e97b0c007f1475b984106282269a9569d65c537e3"
+    },
+    {
+      "path": "results/reports/swir-upconversion-validation.txt",
+      "bytes": 1041,
+      "sha256": "d021eae7f018e0d7976b007f9f2b5f6233dd7e698c8fe2851cd689e89467f980"
+    },
+    {
+      "path": "results/reports/uv-and-dual-validation.txt",
+      "bytes": 1216,
+      "sha256": "c842830741b1f4fee9beaa20e20a2a36d67198dfdc784d258c420f1f38025040"
+    },
+    {
+      "path": "results/reports/uv-downconverter-demo.txt",
+      "bytes": 1401,
+      "sha256": "f038b61478b55ff8177fa2ee265b789a4701733dffa52930ffc4b23c5dbb224c"
+    },
+    {
+      "path": "results/reports/validation-summary.json",
+      "bytes": 3386,
+      "sha256": "a71aa4b4952cb60753df265ec98082106b6be8021d66aef39d36ce22059ed846"
+    },
+    {
+      "path": "results/reports/validation-summary.md",
+      "bytes": 189,
+      "sha256": "8c99cca77c3baa571b3c3a6b6ff550c10ea42a7c62d928396ea0e465188772dc"
+    },
+    {
+      "path": "results/tables/selector-transfer-characteristic.csv",
+      "bytes": 159247,
+      "sha256": "58e722b2eb82671003ff76803a38e4d463ad9324f71354aaad3ba142fda99964"
+    },
+    {
+      "path": "results/tables/swir-upconversion-reconstruction.csv",
+      "bytes": 2464,
+      "sha256": "6409c8755697fe4ed6343111200c1b6640754569a0961ac3906b5cd3c75a2c30"
+    },
+    {
+      "path": "results/tables/uv-downconverter-channel-metrics.csv",
+      "bytes": 1148,
+      "sha256": "c9312c90e96c34a8a6bb2d61fd335f89d46cf93d69da4ce54f8bc4e4eb0e46a9"
+    },
+    {
+      "path": "setupQDVoltageSelectedDualConverter.m",
+      "bytes": 1548,
+      "sha256": "fb67b324ef1374ce7a88f0f3c27e413de9eba90a4b87e6e287f8208f08731954"
+    },
+    {
+      "path": "src/common/initQDVoltageSelectedDualConverter.m",
+      "bytes": 3074,
+      "sha256": "4eac1656f7ed43ad05ae5f43a90d395ac4523c82778138a307ea691888855d8a"
+    },
+    {
+      "path": "src/common/qdPackagePaths.m",
+      "bytes": 1073,
+      "sha256": "7da19a2b5e77ab23878644e8cb0a2c6441c40cbddb053043256cb2bb9dc45836"
+    },
+    {
+      "path": "src/common/qdSpectralTelemetrySFunction.m",
+      "bytes": 1467,
+      "sha256": "2567efd8bf0ebe30ee1b113670071c79bef2a8e9b47891ed9a42837b934efe68"
+    },
+    {
+      "path": "src/common/reconstructQDSpectrum.m",
+      "bytes": 7158,
+      "sha256": "74504431cebf966fcddbffb62a87d0f301510fe49e5e7a54de05e8adfdce3977"
+    },
+    {
+      "path": "src/common/setQDConversionMode.m",
+      "bytes": 1052,
+      "sha256": "efa86fa2a182550b0b1390e620eaf3921fd4bd004dfbebf8591bf84616ea209b"
+    },
+    {
+      "path": "src/downconverter/initQDUVDownconverter.m",
+      "bytes": 3479,
+      "sha256": "e502833aba4d92798eee5642b9df371886759ba817a992e179f21366f4f52b52"
+    },
+    {
+      "path": "src/downconverter/qdBuildDownconversionResponse.m",
+      "bytes": 13713,
+      "sha256": "f6c1e7d7c20037977366efc3f27bd38d5dcded5c7fce4cf9ec4c58ee910d559d"
+    },
+    {
+      "path": "src/downconverter/qdDownconversionConfig.m",
+      "bytes": 12126,
+      "sha256": "b721e6284d4fb8ceaff4b00604999b92cab2cc6c8d36decc9a9eac47037e917f"
+    },
+    {
+      "path": "src/downconverter/qdDownconversionReconstructionSFunction.m",
+      "bytes": 1447,
+      "sha256": "02ef35278e665c63149ac770a72a938b4bc5893c27ef4af513fae48db00df2e7"
+    },
+    {
+      "path": "src/downconverter/qdDownconversionSFunction.m",
+      "bytes": 2142,
+      "sha256": "e7f323064523bc1b0a1e5881a567c3081758e103226ef4ec6a0fb781f6d360ec"
+    },
+    {
+      "path": "src/downconverter/simulateQDDownconversion.m",
+      "bytes": 10632,
+      "sha256": "9b62e58571be4e739af09a2aef252806169a6dde4af79a1092990a5b767b53a9"
+    },
+    {
+      "path": "src/selector/qdDecodeSelectorVoltage.m",
+      "bytes": 3182,
+      "sha256": "a0f5e396da230f029e656daee7ce4c51e3e0e56e3c830e8bfde337b5401d9ebb"
+    },
+    {
+      "path": "src/selector/qdElectronicSelectorDecoderSFunction.m",
+      "bytes": 2443,
+      "sha256": "84e2face3ff7584deefab9d68dac8b57640c86c8ed39748a950a4ce6af7e262f"
+    },
+    {
+      "path": "src/selector/setQDSelectorVoltage.m",
+      "bytes": 1315,
+      "sha256": "94307e7575a888c05784fd34545a6f83764cd2637b2a6a2da79e3d8d35365c9e"
+    },
+    {
+      "path": "src/selector/setQDUVSpectrum.m",
+      "bytes": 1432,
+      "sha256": "3af9c744cf24aa82ad870a5dc36e8ef80224e638a5cd02fb402633d68241f32a"
+    },
+    {
+      "path": "src/upconverter/initQDSWIRUpconversionSpectrometer.m",
+      "bytes": 1908,
+      "sha256": "18fcb69776965261c8c42333441d6827348a58b1084935aa534b9337e117f554"
+    },
+    {
+      "path": "src/upconverter/qdApplyMeasuredSpectralCalibration.m",
+      "bytes": 3106,
+      "sha256": "601ba5c3c40ed2960b9c26983f4a4e394427282915d111e12abb2f5f31f4f8c0"
+    },
+    {
+      "path": "src/upconverter/qdBuildSpectralResponse.m",
+      "bytes": 10452,
+      "sha256": "09911f19cc13fe73f6539be00bc8ee8f283ff8921ddb9200c77242475ae93a95"
+    },
+    {
+      "path": "src/upconverter/qdCdSeEmitterReference.m",
+      "bytes": 1464,
+      "sha256": "a732c2700eaf007aa8ecf4b2aaa6da739acabc4c82541242a27ab8ad09283878"
+    },
+    {
+      "path": "src/upconverter/qdSpectralReconstructionSFunction.m",
+      "bytes": 1338,
+      "sha256": "06de0e01d6faf68cb564b0041b241bf8124a852cbedc542891ec35ded6c09f0b"
+    },
+    {
+      "path": "src/upconverter/qdUpconversionSpectrometerConfig.m",
+      "bytes": 9242,
+      "sha256": "917667e60a4632c68a5daaa23ab857f7c729c99a7d8b0cddddcf23a14fcb4041"
+    },
+    {
+      "path": "src/upconverter/setQDSWIRSpectrum.m",
+      "bytes": 1361,
+      "sha256": "ee1f5c221168455a636f44cc3b6e8dd19bc41e956f1b597ce69183fa02fc89af"
+    },
+    {
+      "path": "src/upconverter/simulateQDComputationalSpectrometer.m",
+      "bytes": 2570,
+      "sha256": "a81dfc576cecf243b1e7ed120356bd266aebfb5e002632e339a0bb293b22ae8c"
+    },
+    {
+      "path": "src/upconverter/simulateQDUpconversionCCD.m",
+      "bytes": 7343,
+      "sha256": "7ad7c402a1c2fff4f362bb719a5a6e202fa7f6438d2853d12c6086da84d65fce"
+    },
+    {
+      "path": "startQDVoltageSelectedDualConverter.m",
+      "bytes": 353,
+      "sha256": "1e72912d408d2671eb1e4aa86fdedb76765855832b17219dc7026957a700c932"
+    },
+    {
+      "path": "tests/runAllQDConverterTests.m",
+      "bytes": 1639,
+      "sha256": "f6b6b619909908e2242bce2bfaa5d2d6aadcc046c8f89688d16759e8a229b6f0"
+    },
+    {
+      "path": "tests/testQDSWIRUpconversion.m",
+      "bytes": 8539,
+      "sha256": "13826724c432fbb644c2d49fa7320dd3654ce25488c0284e6591185aa87c3d96"
+    },
+    {
+      "path": "tests/testQDUVAndDualConversion.m",
+      "bytes": 15558,
+      "sha256": "81b35003c08e206003420baa9899f9026c7f890661ab51bd342820326f87a198"
+    },
+    {
+      "path": "tests/writeQDPackageManifest.m",
+      "bytes": 2046,
+      "sha256": "68c3979c9a6403b6eccd23b9671767cb3aa92c45c76ca283d5d2d7c43d3192ad"
+    }
+  ]
+}

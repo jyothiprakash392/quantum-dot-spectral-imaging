@@ -1,0 +1,11 @@
+QD Upconversion CCD Computational Spectrometer Demo
+Calibration: UNMEASURED DEFAULT - replace with device calibration
+Input band: 1200.0 to 1700.0 nm, 36 bins
+Measurements: 12 pixels x 5 biases = 60
+Response rank: 36, condition number: 40.193037
+Normalized RMSE by mean: 0.075393917
+Spectral correlation: 0.99827183
+Spectral angle: 2.6578746 degrees
+Maximum expected CCD signal: 15362.472 electrons
+CCD saturation: 0
+IMPORTANT: the delivered response family is synthetic. Use qdApplyMeasuredSpectralCalibration for quantitative hardware prediction.

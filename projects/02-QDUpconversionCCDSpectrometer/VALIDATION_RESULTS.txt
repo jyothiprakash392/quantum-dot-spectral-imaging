@@ -1,0 +1,32 @@
+Virtual Quantum Dot Agent - Validation Results
+Timestamp: 2026-08-31 21:06:13 +0530
+MATLAB: 26.1.0.3312084 (R2026a) Update 4
+Passed: 20
+Failed: 0
+
+PASS  CODATA/Brus golden regression
+PASS  Finite-barrier default and probability conservation
+PASS  Shallow unequal-mass finite-well bound-state roots
+PASS  Radius limiting behavior
+PASS  Quadratic Stark symmetry
+PASS  Varshni temperature trend
+PASS  Autonomous target-radius search
+PASS  Legacy-compatible lambda1 and photon-count conversion
+PASS  Square-pulse gating and expected photon-count integration
+PASS  Exact zero-duration, sub-step pulse, and delivered-dose accounting
+PASS  Exact Markov propagation and integrated reward semigroup
+PASS  Spectrum wavelength Jacobian and integrated-density conservation
+PASS  C1 pump edge, 350 nm calibration, and intrinsic spectrum invariance
+PASS  Stokes-shift preset and explicit override
+PASS  Strict finite, range, photon-dose, and structure validation
+PASS  Calibrated materialID 5 interface and 6 nm checkpoint
+PASS  Simulink compile and execution
+PASS  Edited input persists and changes model output
+PASS  Simulink photon inputs, lambda2, and count accumulator
+PASS  Simulink non-grid pulse delivered-photon conservation
+
+Default PL energy: 1.942753759 eV
+Default wavelength: 638.187922 nm
+Default confidence: 0.920000
+Target-search radius: 2.597170446 nm
+Target-search error: 1.14153353e-09 eV

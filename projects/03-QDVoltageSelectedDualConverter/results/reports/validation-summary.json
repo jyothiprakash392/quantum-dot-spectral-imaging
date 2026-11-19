@@ -1,0 +1,62 @@
+{
+  "package": "QDVoltageSelectedDualConverter",
+  "timestamp": "2026-09-08 11:09:48 +0530",
+  "matlabVersion": "26.1.0.3312084 (R2026a) Update 4",
+  "uvAndDual": {
+    "passed": 13,
+    "failed": 0,
+    "tests": [
+      "Configuration and ADC decoder provide one-hot selection with hysteresis",
+      "All voltage channels have passive, nonnegative full-rank operators",
+      "Voltage decoder selects nearest fixed emission channel without saturation",
+      "Zero optical input produces only the correct detector dark vectors",
+      "Computational CCD matches the exact calibrated response column",
+      "Seeded detector noise is local, repeatable, and accurately inverted",
+      "Noisy UV reconstruction remains accurate at every voltage channel",
+      "Dichroic routing uses silicon for visible and InGaAs for long NIR",
+      "Invalid voltage, spectrum, and anti-Stokes passive setup are rejected",
+      "Up-conversion mapping to the shared grid conserves photon count",
+      "Electronic voltage setter selects the decoded fixed channel",
+      "Down-converter voltage slider binds, changes channels, and matches MATLAB equations",
+      "Combined SLX electronic controls select exact optical branches"
+    ],
+    "timestamp": "2026-09-08 11:09:46 +0530",
+    "matlabVersion": "26.1.0.3312084 (R2026a) Update 4",
+    "maximumResponseConditionNumber": 5.2906362399399889,
+    "minimumNoisyCorrelation": 0.99961256106249352,
+    "downconversionModel": "/Users/jyohtiprakash/Documents/Codex/2026-09-01/build-quantum-dot-simulink-agent-implement/outputs/QDVoltageSelectedDualConverter/models/QDUVDownconverter.slx",
+    "dualConversionModel": "/Users/jyohtiprakash/Documents/Codex/2026-09-01/build-quantum-dot-simulink-agent-implement/outputs/QDVoltageSelectedDualConverter/models/QDVoltageSelectedDualConverter.slx"
+  },
+  "swir": {
+    "passed": 11,
+    "failed": 0,
+    "tests": [
+      "Response factorization dimensions, positivity, and PL normalization",
+      "Full numerical rank and focused material-reference coverage",
+      "Active upconversion is explicitly electrically powered",
+      "Zero optical input produces dark expectation only",
+      "Monochromatic unit-column response is exact",
+      "Electrically assisted operating-point forward model is linear",
+      "Noiseless nonnegative reconstruction recovers a broadband mixture",
+      "Seeded shot/read noise is repeatable and reconstruction remains accurate",
+      "Measured end-to-end response and dark calibration replace defaults",
+      "Strict input, calibration, and reconstruction validation",
+      "Generated SLX closes, reloads, compiles, and matches MATLAB equations"
+    ],
+    "timestamp": "2026-09-08 11:09:48 +0530",
+    "matlabVersion": "26.1.0.3312084 (R2026a) Update 4",
+    "responseRank": 36,
+    "responseConditionNumber": 40.193036739994341,
+    "noisyDemoMetrics": {
+      "RMSE_photonsPerBin": 27249.230998300609,
+      "normalizedRMSEByMean": 0.075393916669769176,
+      "spectralCorrelation": 0.99827183470902092,
+      "spectralAngle_deg": 2.6578745879274059,
+      "totalPhotonRelativeError": -0.000883793323001398
+    },
+    "simulinkModel": "/Users/jyohtiprakash/Documents/Codex/2026-09-01/build-quantum-dot-simulink-agent-implement/outputs/QDVoltageSelectedDualConverter/models/QDSWIRUpconversionSpectrometer.slx"
+  },
+  "passed": 24,
+  "failed": 0,
+  "allPassed": true
+}

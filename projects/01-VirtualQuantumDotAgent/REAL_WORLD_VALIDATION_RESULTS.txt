@@ -1,0 +1,54 @@
+Virtual Quantum Dot Agent - Real-World CdSe Comparison
+Timestamp: 2026-08-25 02:03:12 +0530
+Observable compared: first-exciton absorption peak
+Yu 2003 DOI: https://doi.org/10.1021/cm034081k
+Jasieniak 2009 DOI: https://doi.org/10.1021/jp906827m
+Donega/Koole 2009 DOI: https://doi.org/10.1021/jp811329r
+
+FINITE-BARRIER MODEL, DIAMETER 3-8 nm
+Against Yu 2003:
+Energy bias       : +0.016205 eV
+Energy MAE        : 0.031205 eV
+Energy RMSE       : 0.043835 eV
+Energy max error  : 0.095462 eV
+Energy MAPE       : 1.461 %
+Wavelength RMSE   : 10.782 nm
+Within 50 meV     : 83.3 %
+
+Against Jasieniak 2009 energy RMSE : 0.027786 eV
+Against Donega/Koole energy RMSE   : 0.043898 eV
+Against three-curve mean RMSE      : 0.037799 eV
+Mean inter-curve spread            : 0.022146 eV
+Maximum inter-curve spread         : 0.041519 eV
+
+FINITE-BARRIER MODEL, DIAMETER >= 4 nm (YU)
+Energy MAE        : 0.018354 eV
+Energy RMSE       : 0.021982 eV
+Wavelength RMSE   : 6.409 nm
+
+INFINITE-BARRIER BRUS APPROXIMATION (YU)
+Energy MAE        : 0.297875 eV
+Energy RMSE       : 0.445026 eV
+Wavelength RMSE   : 83.121 nm
+
+FINITE-BARRIER RMSE IMPROVEMENT: 10.15x in energy, 7.71x in wavelength
+
+ASSUMPTION-DRIVEN SCENARIO BAND (400 samples, seed 42)
+95% band Yu-curve coverage : 83.3 %
+Mean 95% half-width        : 0.037588 eV
+Radius 1-sigma assumption  : 3.0 %
+Temperature sigma          : 5.0 K
+Electron barrier sigma     : 0.120 eV
+Hole barrier sigma         : 0.100 eV
+Environment epsilon sigma  : 0.250
+
+INTRINSIC RADIATIVE LIFETIME CHECK
+RMSE versus Donega/Koole relation : 9.548 ns
+Mean relative error               : -27.97 %
+Mean absolute relative error      : 27.97 %
+
+INTERPRETATION
+The finite-barrier model is quantitatively useful from about 4-8 nm diameter under this scenario. The largest error occurs at 3 nm, where atomistic, non-parabolic and surface effects are strongest.
+The scenario band measures sensitivity to stated input assumptions; it is not a statistically calibrated experimental confidence interval.
+All three curves are empirical relationships, not independent raw observations. Their spread measures calibration-choice disagreement.
+The lifetime check uses 1/radiativeRate_Hz, not the trap-limited effective lifetime.

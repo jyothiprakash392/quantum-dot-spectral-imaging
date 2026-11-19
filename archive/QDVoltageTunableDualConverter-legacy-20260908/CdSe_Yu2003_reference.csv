@@ -1,0 +1,7 @@
+diameter_nm,radius_nm,firstExciton_nm,firstExciton_eV,benchmark
+3.0,1.5,547.9665235053,2.2626235931,"Yu et al. 2003 CdSe TEM-based sizing polynomial"
+4.0,2.0,585.3085589511,2.1182707230,"Yu et al. 2003 CdSe TEM-based sizing polynomial"
+5.0,2.5,608.8445769737,2.0363850336,"Yu et al. 2003 CdSe TEM-based sizing polynomial"
+6.0,3.0,626.4355679444,1.9792011306,"Yu et al. 2003 CdSe TEM-based sizing polynomial"
+7.0,3.5,640.6670824586,1.9352359724,"Yu et al. 2003 CdSe TEM-based sizing polynomial"
+8.0,4.0,652.7173311436,1.8995082943,"Yu et al. 2003 CdSe TEM-based sizing polynomial"

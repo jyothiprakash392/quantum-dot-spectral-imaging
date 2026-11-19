@@ -1,0 +1,16 @@
+Virtual Quantum Dot Agent - Hybrid Validation Tests
+Timestamp: 2026-08-31 21:06:21 +0530
+MATLAB: 26.1.0.3312084 (R2026a) Update 4
+Passed: 10
+Failed: 0
+
+PASS  Optical model selection uses disjoint development/frozen sizes
+PASS  Optical frozen-size metrics reproduce and improve baseline
+PASS  Kinetic development selection, coefficients, and frozen metrics
+PASS  Seeded candidate benchmark is repeatable
+PASS  All optical protocols, robust midpoint, and model envelope
+PASS  Absorption adaptation never fabricates a PL/lambda2 correction
+PASS  Optical adapter includes exact boundaries and blocks extrapolation
+PASS  IDs 2, 3, and 5 safely retain their optical models
+PASS  Invalid optical protocol is rejected
+PASS  ID3 Auger learner is physical and convex-hull gated

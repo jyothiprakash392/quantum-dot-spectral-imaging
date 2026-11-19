@@ -1,0 +1,136 @@
+function report = runQDEnsembleDemo()
+%RUNQDENSEMBLEDEMO Compare one ideal dot with a polydisperse measured sample.
+
+rootFolder = fileparts(mfilename('fullpath'));
+addpath(rootFolder);
+
+inputs = qdAccurateCdSeInputs(2.8);
+inputs.stokesShiftOverride_eV = 0.030;
+inputs.incidentPhotonCount = 1e6;
+inputs.inputWavelength_nm = 405;
+inputs.beamArea_um2 = 100;
+inputs.pumpDuration_ns = 1;
+
+commonOptions = {'Duration_ns',5,'InstrumentFWHM_eV',0.015, ...
+    'NumberOfDots',1e5,'CollectionEfficiency',0.03, ...
+    'OpticalTransmission',0.70,'DetectorQuantumEfficiency',0.80, ...
+    'DarkCountRate_Hz',50,'ExposureTime_ns',5, ...
+    'ReadNoiseElectronsRMS',1.5,'DetectorPixelCount',64};
+monodisperse = simulateQDEnsemble(inputs,'RadiusCV',0,commonOptions{:});
+polydisperse = simulateQDEnsemble(inputs,'RadiusCV',0.06, ...
+    'QuadratureOrder',21,commonOptions{:});
+
+figureHandle = figure('Visible','off','Color','w','Position',[100 100 1180 760]);
+layout = tiledlayout(2,2,'Padding','compact','TileSpacing','compact');
+layoutTitle = title(layout, ...
+    'Virtual Quantum Dot Agent 1.5 — Ensemble Observation Layer', ...
+    'FontWeight','bold','Color','k');
+layoutTitle.FontSize = 16;
+
+nexttile;
+monoAbs = monodisperse.spectrum.absorptionLineObserved_m2_per_eV;
+polyAbs = polydisperse.spectrum.absorptionLineObserved_m2_per_eV;
+plot(monodisperse.spectrum.energy_eV,monoAbs/max(monoAbs), ...
+    'LineWidth',1.8,'DisplayName','single radius');
+hold on;
+plot(polydisperse.spectrum.energy_eV,polyAbs/max(polyAbs), ...
+    'LineWidth',1.8,'DisplayName','6% radius CV');
+xlim(localSharedEnergyLimits(monodisperse,polydisperse));
+xlabel('Photon energy (eV)');
+ylabel('Normalized absorption');
+title('Absorption broadening');
+grid on;
+legend('Location','best');
+
+nexttile;
+plot(monodisperse.spectrum.wavelengthAscending_nm, ...
+    monodisperse.spectrum.plProbabilityObserved_per_nm, ...
+    'LineWidth',1.8,'DisplayName','single radius');
+hold on;
+plot(polydisperse.spectrum.wavelengthAscending_nm, ...
+    polydisperse.spectrum.plProbabilityObserved_per_nm, ...
+    'LineWidth',1.8,'DisplayName','6% radius CV');
+xlim(localSharedWavelengthLimits(monodisperse,polydisperse));
+xlabel('Emission wavelength (nm)');
+ylabel('Probability density (nm^{-1})');
+title('PL spectrum including instrument response');
+grid on;
+legend('Location','best');
+
+nexttile;
+stem(polydisperse.memberSummary.Radius_nm, ...
+    polydisperse.memberSummary.NumberWeight,'filled','LineWidth',1.2);
+xlabel('Core radius (nm)');
+ylabel('Number fraction');
+title('Deterministic lognormal quadrature');
+grid on;
+
+nexttile;
+axis off;
+summaryText = { ...
+    sprintf('Mean radius: %.3f nm', ...
+        polydisperse.distribution.realizedMeanRadius_nm); ...
+    sprintf('Realized radius CV: %.2f %%', ...
+        100*polydisperse.distribution.realizedRadiusCV); ...
+    sprintf('Single-dot PL FWHM: %.2f nm',monodisperse.plFWHM_nm); ...
+    sprintf('Ensemble PL FWHM: %.2f nm',polydisperse.plFWHM_nm); ...
+    sprintf('Ensemble peak lambda2: %.2f nm', ...
+        polydisperse.plPeakWavelength_nm); ...
+    sprintf('Expected signal photoelectrons: %.4g', ...
+        polydisperse.detector.signalPhotoelectronCountExpected); ...
+    sprintf('Detector SNR: %.3g', ...
+        polydisperse.detector.signalToNoiseRatio); ...
+    'Caution: independent-dot, optically thin approximation'};
+text(0.02,0.95,summaryText,'VerticalAlignment','top', ...
+    'FontName','Helvetica','FontSize',12,'Interpreter','none');
+title('Experimental-observation summary');
+
+axesHandles = findall(figureHandle,'Type','axes');
+set(axesHandles,'Color','w','XColor','k','YColor','k', ...
+    'GridColor',[0.72 0.72 0.72]);
+textHandles = findall(figureHandle,'Type','text');
+set(textHandles,'Color','k');
+legendHandles = findall(figureHandle,'Type','legend');
+set(legendHandles,'Color','w','TextColor','k','EdgeColor',[0.3 0.3 0.3]);
+
+imagePath = fullfile(rootFolder,'QDEnsembleObservationDemo.png');
+exportgraphics(figureHandle,imagePath,'Resolution',180);
+close(figureHandle);
+
+caseName = {'monodisperse';'radius_CV_6pct'};
+meanRadius_nm = [monodisperse.distribution.realizedMeanRadius_nm; ...
+    polydisperse.distribution.realizedMeanRadius_nm];
+radiusCV = [monodisperse.distribution.realizedRadiusCV; ...
+    polydisperse.distribution.realizedRadiusCV];
+plPeakWavelength_nm = [monodisperse.plPeakWavelength_nm; ...
+    polydisperse.plPeakWavelength_nm];
+plFWHM_nm = [monodisperse.plFWHM_nm;polydisperse.plFWHM_nm];
+emittedPhotonsPerDot = [monodisperse.photonAccounting. ...
+    averageEmittedPhotonCountExpectedPerDot; ...
+    polydisperse.photonAccounting.averageEmittedPhotonCountExpectedPerDot];
+signalPhotoelectrons = [ ...
+    monodisperse.detector.signalPhotoelectronCountExpected; ...
+    polydisperse.detector.signalPhotoelectronCountExpected];
+signalToNoise = [monodisperse.detector.signalToNoiseRatio; ...
+    polydisperse.detector.signalToNoiseRatio];
+comparison = table(caseName,meanRadius_nm,radiusCV,plPeakWavelength_nm, ...
+    plFWHM_nm,emittedPhotonsPerDot,signalPhotoelectrons,signalToNoise);
+writetable(comparison,fullfile(rootFolder,'QD_ENSEMBLE_DEMO_COMPARISON.csv'));
+
+report = struct('inputs',inputs,'monodisperse',monodisperse, ...
+    'polydisperse',polydisperse,'comparison',comparison, ...
+    'imagePath',imagePath);
+save(fullfile(rootFolder,'QDEnsembleObservationDemo.mat'),'report');
+end
+
+function limits = localSharedEnergyLimits(first,second)
+centers = [first.plMeanEnergy_eV,second.plMeanEnergy_eV, ...
+    first.absorptionPeakEnergy_eV,second.absorptionPeakEnergy_eV];
+limits = [min(centers)-0.35,max(centers)+0.45];
+end
+
+function limits = localSharedWavelengthLimits(first,second)
+centers = [first.plMeanWavelength_nm,second.plMeanWavelength_nm];
+span = max(35,6*max(first.plFWHM_nm,second.plFWHM_nm));
+limits = [min(centers)-span/2,max(centers)+span/2];
+end

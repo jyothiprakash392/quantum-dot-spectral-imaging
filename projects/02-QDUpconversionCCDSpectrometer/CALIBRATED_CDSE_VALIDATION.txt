@@ -1,0 +1,18 @@
+Virtual Quantum Dot Agent - Calibrated CdSe Preset
+Timestamp: 2026-08-31 21:06:21 +0530
+Scope: Material 5; bare CdSe core; diameter 3-8 nm; 300 K; zero electric field and strain; no shell; environment dielectric 2.25
+Observable: first-exciton absorption energy
+
+RMSE versus three-curve mean : 0.000371 eV
+RMSE versus Yu 2003          : 0.005571 eV
+RMSE versus Jasieniak 2009   : 0.010850 eV
+RMSE versus Donega/Koole     : 0.009967 eV
+Wavelength RMSE versus mean  : 0.115 nm
+Maximum absolute mean error  : 0.000807 eV
+Inside published source span : 100.0 %
+Maximum source disagreement  : 0.041519 eV
+
+Independent held-out validation: NO
+PL externally validated: NO
+Residuals quantify agreement with the equations used for calibration. Published-curve spread is a model-choice diagnostic, not a statistical confidence interval.
+The source equations measure absorption, not PL. Supply a sample-specific stokesShiftOverride_eV before interpreting lambda2.

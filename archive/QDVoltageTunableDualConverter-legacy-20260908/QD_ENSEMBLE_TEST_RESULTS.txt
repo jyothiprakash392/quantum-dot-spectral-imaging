@@ -1,0 +1,25 @@
+Virtual Quantum Dot Agent - Ensemble Observation Tests
+Timestamp: 2026-08-31 21:06:21 +0530
+MATLAB: 26.1.0.3312084 (R2026a) Update 4
+Passed: 14
+Failed: 0
+
+PASS  Stable 14/40 contract and exact zero-dispersion limit
+PASS  Lognormal moments and analytic R-cubed absorption area
+PASS  Measured discrete number fractions and duplicate invariance
+PASS  Deterministic quadrature is repeatable and RNG-independent
+PASS  Ensemble spectral areas and energy-wavelength Jacobian
+PASS  Gaussian instrument broadening preserves area and widens PL
+PASS  Photon, detector-efficiency, dark, and read-noise accounting
+PASS  Optically thin photon-budget diagnostic
+PASS  Unspecified photon budget reports depletion as not assessed
+PASS  Non-negligible lognormal tails force bounded conditioning
+PASS  Zero-fraction histogram bins have no ensemble effect
+PASS  Bitwise flag union and calibration-scope weight coverage
+PASS  Weighted population and additive count physicality
+PASS  Strict distribution, efficiency, and radius validation
+
+Lognormal mean radius: 3.000000000000 nm
+Lognormal radius CV: 0.100000000000
+Expected R^3 absorption area: 1.53027516627e-18 m^2
+Observed R^3 absorption area: 1.53027516627e-18 m^2

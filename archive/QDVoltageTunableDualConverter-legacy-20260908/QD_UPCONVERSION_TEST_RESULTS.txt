@@ -1,0 +1,23 @@
+QD Upconversion CCD Computational Spectrometer Tests
+Timestamp: 2026-09-03 14:12:16 +0530
+MATLAB: 26.1.0.3312084 (R2026a) Update 4
+Passed: 12
+Failed: 0
+
+PASS  Legacy virtual-dot 14-input/40-output contract unchanged
+PASS  Response factorization dimensions, positivity, and PL normalization
+PASS  Full numerical rank and QD-core calibration coverage
+PASS  Active upconversion is explicitly electrically powered
+PASS  Zero optical input produces dark expectation only
+PASS  Monochromatic unit-column response is exact
+PASS  Electrically assisted operating-point forward model is linear
+PASS  Noiseless nonnegative reconstruction recovers a broadband mixture
+PASS  Seeded shot/read noise is repeatable and reconstruction remains accurate
+PASS  Measured end-to-end response and dark calibration replace defaults
+PASS  Strict input, calibration, and reconstruction validation
+PASS  Generated SLX closes, reloads, compiles, and matches MATLAB equations
+
+Response rank: 36
+Response condition number: 40.19303674
+Noisy demo normalized RMSE: 0.0753939166698
+Noisy demo spectral correlation: 0.998271834709

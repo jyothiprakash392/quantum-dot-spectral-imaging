@@ -1,0 +1,22 @@
+QD Downconversion and Dual-Mode Simulink Tests
+Timestamp: 2026-09-08 11:09:46 +0530
+MATLAB: 26.1.0.3312084 (R2026a) Update 4
+Passed: 13
+Failed: 0
+
+PASS  Configuration and ADC decoder provide one-hot selection with hysteresis
+PASS  All voltage channels have passive, nonnegative full-rank operators
+PASS  Voltage decoder selects nearest fixed emission channel without saturation
+PASS  Zero optical input produces only the correct detector dark vectors
+PASS  Computational CCD matches the exact calibrated response column
+PASS  Seeded detector noise is local, repeatable, and accurately inverted
+PASS  Noisy UV reconstruction remains accurate at every voltage channel
+PASS  Dichroic routing uses silicon for visible and InGaAs for long NIR
+PASS  Invalid voltage, spectrum, and anti-Stokes passive setup are rejected
+PASS  Up-conversion mapping to the shared grid conserves photon count
+PASS  Electronic voltage setter selects the decoded fixed channel
+PASS  Down-converter voltage slider binds, changes channels, and matches MATLAB equations
+PASS  Combined SLX electronic controls select exact optical branches
+
+Maximum response condition number: 5.29063623994
+Minimum noisy reconstruction correlation: 0.999612561062

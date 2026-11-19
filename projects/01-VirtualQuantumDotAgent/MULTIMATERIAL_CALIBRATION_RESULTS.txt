@@ -1,0 +1,45 @@
+Virtual Quantum Dot Agent - Material IDs 2-4 Calibration
+Timestamp: 2026-08-30 22:33:42 +0530
+MATLAB: 26.1.0.3312084 (R2026a) Update 4
+Passed: 22
+Failed: 0
+
+PASS  Stable 14-input/40-output contract and calibrated material metadata
+PASS  InP 2023 volume-law regression and monotonicity
+PASS  InP observable-specific PL and unsupported-ZnSe-shell flags
+PASS  InP/ZnSe external geometry-mismatched limitation check and flags
+PASS  PbS 2009 sizing-law regression, inverse round-trip, and monotonicity
+PASS  PbS/CdS cation-exchange transfer scope and PL/kinetic cautions
+PASS  PbS/CdS external thick-shell PL/overlap limitation score
+PASS  PbS/CdS 13-row Auger learner, whole-series CV, convex scope, and physics-engine propagation
+PASS  CsPbBr3 2017 absorption/PL/Stokes table regression and lambda2
+PASS  CsPbBr3 measured 250-300 K slope and temperature-envelope flag
+PASS  CsPbBr3 external cross-source absorption comparison error
+PASS  CsPbBr3 external cross-protocol PL-anchor error
+PASS  CsPbBr3 constrained-ML kinetic fit and frozen 9-row evaluation RMSE reproduction
+PASS  Constrained-ML kinetic physicality and rate closure on 10,001 points
+PASS  CsPbBr3 learned rates propagate with conditional-validation metadata
+PASS  Protocol-specific optical residual, unknown-protocol ensemble, and ID2 fallback
+PASS  Frozen CsPbBr3 primary source table integrity
+PASS  Frozen PbS/CdS 2026 primary table integrity
+PASS  Fractional-ID, NaN metadata, zero-pump, and barrier-envelope fixes
+PASS  Photon-count/lambda1 adapter across calibrated IDs 2-4
+PASS  Prediction API separates external error and interval interpretation
+PASS  Simulink compile/run and direct-engine agreement for IDs 2-4
+
+ID2 InP source-equation max error: 0 eV
+ID2 out-of-scope InP/ZnSe absorption single error: -0.206795078 eV
+ID2 out-of-scope InP/ZnSe PL single error: -0.096795078 eV
+ID3 PbS source-equation max error: 0 eV
+ID3 thick-shell PL holdout RMSE: 0.134996078 eV
+ID3 thick-shell overlap holdout RMSE: 0.174547033
+ID3 Auger whole-series CV RMSE: 8.946282873 ps
+ID3 generic Auger baseline RMSE: 100.687978271 ps
+ID4 external cross-source absorption RMSE: 0.069587361 eV
+ID4 external cross-source absorption bias: 0.064909091 eV
+ID4 cross-protocol PL-anchor RMSE: 0.043675698 eV
+ID4 frozen-evaluation radiative-rate RMSE: 0.014559342 ns^-1
+ID4 frozen-evaluation nonradiative-rate RMSE: 0.010309438 ns^-1
+ID4 frozen-evaluation total-lifetime RMSE: 0.089642253 ns
+ID4 frozen-evaluation radiative-lifetime RMSE: 0.180420528 ns
+ID4 frozen-evaluation PLQY RMSE: 3.486607832 percentage points

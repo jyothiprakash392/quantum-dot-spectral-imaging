@@ -1,0 +1,22 @@
+Virtual Quantum Dot Agent - Physics + ML Benchmark
+Method: Physics-residual learning with model selection confined to grouped inner CV and one final evaluation on untouched groups.
+Random seed: 42
+
+OPTICAL: Mondal-2019 CsPbBr3 synthesis series
+Selected by development-only CV: constant
+Development LOOCV RMSE: 0.011879126 eV
+Untouched baseline holdout RMSE: 0.072514941 eV
+Untouched hybrid holdout RMSE: 0.037012708 eV
+Untouched hybrid holdout bias: -0.004215909 eV
+Caution: Protocol-specific correction: do not apply it as a universal shift to other CsPbBr3 batches.
+
+KINETICS: Abbas-2025 PL-energy groups
+Deployed model: physics-constrained cubic ridge on lifetime and PLQY
+Selected ridge lambda: 0.1; development composite: 0.799362905
+Frozen evaluation RMSE: kr 0.014559342 ns^-1; knr 0.010309438 ns^-1; lifetime 0.089642253 ns; radiative lifetime 0.180420528 ns; PLQY 3.486607832 pp
+
+Exploratory radiative selected: gpr-matern32; inner CV 0.011763053 ns^-1; untouched RMSE 0.014410761 ns^-1 (old 0.015058595)
+Exploratory nonradiative selected: lsboost; inner CV 0.009294210 ns^-1; untouched RMSE 0.010498170 ns^-1 (old 0.010791458)
+Exploratory paired-model frozen total-lifetime RMSE: 0.111810789 ns
+Exploratory paired-model frozen radiative-lifetime RMSE: 0.182367349 ns
+Exploratory paired-model frozen PLQY RMSE: 3.620032207 percentage points

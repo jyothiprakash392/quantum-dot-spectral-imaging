@@ -1,0 +1,15 @@
+.DS_Store
+**/.DS_Store
+slprj/
+**/slprj/
+**/varcache/
+**/cache/
+**/SimulinkCache/
+**/CodeGeneration/
+*.slxc
+*.autosave
+*.asv
+*~
+~$*
+
+# Keep result images, tables, manifests, and MAT files under version control.

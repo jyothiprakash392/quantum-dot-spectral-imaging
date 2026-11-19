@@ -1,0 +1,11 @@
+Real-world validation workflow regression tests
+Timestamp: 2026-08-31 21:06:14 +0530
+Passed: 7/7
+
+published reference checkpoints: PASS
+independent reference spread: PASS
+6 nm prediction and residuals: PASS
+3 nm small-dot error level: PASS
+intrinsic radiative-lifetime mapping: PASS
+materialID 5 fitted-curve accuracy and lifetime calibration: PASS
+materialID 5 calibration-envelope diagnostics: PASS
