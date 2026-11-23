@@ -7,8 +7,9 @@ The intended camera architecture uses a wavelength-conversion channel in front o
 ## Start here
 
 1. Read [the connected math and code guide](docs/Quantum_Dots_Connected_Math_Guide.docx) for the mathematical flow, methodology, diagrams, result examples, and systematic explanations of the MATLAB files.
-2. Choose one of the three packages below. Each is kept self-contained so its MATLAB entry points, model files, source, and results stay together.
-3. Use the package README and its start script for that branch.
+2. For a report-style overview, read the [IEEE-format research paper (Word)](docs/IEEE_Quantum_Dot_Wavelength_Conversion_Paper.docx) or its [PDF](docs/IEEE_Quantum_Dot_Wavelength_Conversion_Paper.pdf). Its results are simulation outputs and it states the current calibration and imaging limits.
+3. Choose one of the three packages below. Each is kept self-contained so its MATLAB entry points, model files, source, and results stay together.
+4. Use the package README and its start script for that branch.
 
 ## How the math connects
 
