@@ -1,0 +1,179 @@
+% IEEE-style research paper for the quantum-dot spectral imaging repository.
+% Compile with: pdflatex IEEE_QD_Spectral_Imaging_Paper.tex
+\documentclass[conference]{IEEEtran}
+
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{cite}
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+\title{A MATLAB/Simulink Framework for Quantum-Dot Wavelength Conversion and Computational Spectral Imaging}
+
+\author{\IEEEauthorblockN{Jyothi Prakash}
+\IEEEauthorblockA{Independent Researcher\\
+GitHub: \url{https://github.com/jyothiprakash392/quantum-dot-spectral-imaging}}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This paper presents a MATLAB/Simulink framework for quantum-dot (QD) wavelength conversion and computational spectral imaging. The framework models wavelength-dependent optical conversion, quantum-dot population dynamics, detector response, calibration, and spectral reconstruction in a common software architecture. Three related packages are provided: a physics-constrained virtual QD model, a short-wave-infrared (SWIR)-to-visible upconversion CCD spectrometer, and a voltage-selected dual converter combining SWIR upconversion with ultraviolet (UV) downconversion. The spectral-imaging measurement model is expressed as a calibrated linear operator that maps an unknown scene spectrum to a set of detector observations. In the demonstrated upconversion configuration, 36 input spectral bins are observed through 12 detector pixels and five bias states, producing 60 measurements. The synthetic demonstration has response rank 36, condition number 40.19, normalized RMSE 0.0754, spectral correlation 0.9983, and spectral angle 2.66 degrees. A six-channel electronic selector provides nominal output peaks from 470 nm to 1410 nm. These results demonstrate the feasibility of the software architecture and reconstruction workflow; they are not a substitute for measured optical calibration. The repository is therefore intended for architecture exploration, algorithm development, and experiment planning.
+\end{abstract}
+
+\begin{IEEEkeywords}
+quantum dots, spectral imaging, wavelength conversion, upconversion, downconversion, computational spectroscopy, MATLAB, Simulink, inverse problems
+\end{IEEEkeywords}
+
+\section{Introduction}
+Conventional image sensors have limited spectral sensitivity and often require a tradeoff between spatial resolution, spectral range, and optical complexity. Wavelength-conversion layers based on quantum dots offer a possible route for translating otherwise difficult-to-detect radiation into bands accessible to established silicon or CCD detectors. However, the conversion layer, detector, and reconstruction algorithm must be designed as one measurement system. A useful model must account for the wavelength-dependent conversion response, detector efficiency, background, noise, and the conditioning of the inverse problem.
+
+This work develops an open, reproducible MATLAB/Simulink framework for that purpose. The repository organizes the implementation into three progressive packages. The first provides single-dot and ensemble-level physics models. The second uses QD upconversion to map SWIR spectra to a CCD-compatible measurement. The third combines an electrically selected set of fixed-emission films with SWIR upconversion and UV downconversion branches.
+
+The main contributions are:
+\begin{enumerate}
+    \item a modular QD optical and kinetic simulation layer with MATLAB and Simulink entry points;
+    \item a calibrated forward model and inverse spectral-reconstruction workflow;
+    \item a dual-converter architecture with electronic mode and channel selection; and
+    \item an explicit separation between software verification, synthetic demonstrations, and hardware-calibrated results.
+\end{enumerate}
+
+\section{System Architecture}
+The repository contains three packages. The virtual QD package implements material-dependent optical and population models. The upconversion spectrometer package combines these models with a CCD observation layer and a reconstruction function. The voltage-selected dual-converter package contains two operating modes:
+\begin{itemize}
+    \item powered SWIR-to-visible upconversion followed by CCD spectral reconstruction; and
+    \item passive UV-to-visible/NIR downconversion using electronically selected fixed-emission films and hybrid silicon/InGaAs detection.
+\end{itemize}
+
+The selector is electronic rather than mechanical. A 12-bit ADC, voltage-window decoder, 20 mV comparator hysteresis, and one-hot gate command select one of six nominal film channels. The supported command/output pairs are shown in Table~\ref{tab:channels}.
+
+\begin{table}[t]
+\caption{Nominal voltage-selected emission channels.}
+\label{tab:channels}
+\centering
+\begin{tabular}{cc}
+\toprule
+Command voltage (V) & Nominal peak (nm)\\
+\midrule
+0.3 & 470\\
+0.8 & 535\\
+1.3 & 625\\
+1.8 & 905\\
+2.3 & 1275\\
+2.8 & 1410\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Measurement Model}
+For a scene spectrum $S(\lambda)$ and channel $j$, the measured response is modeled as
+\begin{equation}
+ y_j = \int S(\lambda)K_j(\lambda)\eta_j(\lambda)\,d\lambda+b_j+n_j,
+ \label{eq:continuous}
+\end{equation}
+where $K_j(\lambda)$ is the calibrated QD conversion response, $\eta_j(\lambda)$ is the detector/readout response, $b_j$ is background, and $n_j$ represents noise. After discretization over $N$ wavelength bins, the forward model becomes
+\begin{equation}
+ \mathbf{y}=\mathbf{A}\mathbf{x}+\mathbf{b}+\mathbf{n}.
+ \label{eq:discrete}
+\end{equation}
+Here, $\mathbf{x}\in\mathbb{R}^{N}$ is the unknown discretized spectrum and each row of $\mathbf{A}$ represents one calibrated pixel, bias, or selected-film measurement.
+
+The reconstruction problem is ill-conditioned in general. The software therefore exposes response-rank and condition-number diagnostics before reconstruction. A constrained estimate can be written as
+\begin{equation}
+ \widehat{\mathbf{x}}=\arg\min_{\mathbf{x}\geq 0}
+ \left\|\mathbf{W}(\mathbf{A}\mathbf{x}-\mathbf{y})\right\|_2^2
+ +\alpha\,\mathcal{R}(\mathbf{x}),
+ \label{eq:inverse}
+\end{equation}
+where $\mathbf{W}$ weights the observations and $\mathcal{R}$ is an optional smoothness or prior regularizer. The implementation supports reconstruction through MATLAB functions and Simulink-compatible signal paths.
+
+Photon energy and wavelength are connected by
+\begin{equation}
+ E_\gamma=\frac{hc}{\lambda},\qquad E_\gamma[\mathrm{eV}]\simeq\frac{1239.84}{\lambda[\mathrm{nm}]}.
+ \label{eq:energy}
+\end{equation}
+The QD emission wavelength is determined by the modeled photoluminescence transition and is not assumed to be a direct copy of the pump wavelength.
+
+\section{Quantum-Dot and Detector Models}
+The virtual QD model uses a finite-barrier, single-band effective-mass approximation. For the mechanistic path, electron and hole confinement energies are combined with a temperature-dependent bulk gap, screened Coulomb interaction, polarization, strain, Stark, and Stokes-shift terms:
+\begin{align}
+ E_{\mathrm{abs}} &= E_g(T)+E_e+E_h-J_{eh}+E_{\mathrm{pol}}+E_{\mathrm{strain}}+E_{\mathrm{Stark}},\\
+ E_{\mathrm{PL}} &= E_{\mathrm{abs}}-E_{\mathrm{Stokes}},\\
+ \lambda_{\mathrm{PL}} &= hc/E_{\mathrm{PL}}.
+\end{align}
+Material-specific empirical anchors are included for CdSe-like, InP, PbS/CdS, CsPbBr$_3$, and empirical CdSe configurations. A four-state continuous-time population model represents the ground, exciton, biexciton, and trapped-excitation states. Radiative, nonradiative, trapping, escape, trap decay, and Auger processes are represented by transition rates. Matrix exponentiation propagates the state probabilities and an augmented reward model accumulates expected absorbed and emitted events.
+
+At the ensemble level, single-dot responses are mixed using either a lognormal radius distribution or measured radius/number-fraction pairs. Spectra are combined on a common energy grid, optionally convolved with an instrument response, and transformed to wavelength density using the appropriate Jacobian. Detector throughput includes collection efficiency, optical transmission, and quantum efficiency. Dark counts, excess-noise variance, and per-pixel read-noise variance are included where configured.
+
+\section{Simulation and Evaluation Protocol}
+The software is organized for reproducibility. The combined converter is initialized from MATLAB using:
+\begin{verbatim}
+setupQDVoltageSelectedDualConverter;
+startQDVoltageSelectedDualConverter;
+\end{verbatim}
+The package provides automated converter tests and demonstrations. The included upconversion demonstration uses an input range of 1200--1700 nm divided into 36 bins. Five bias states and 12 detector pixels generate 60 observations. The default response family is synthetic and is explicitly marked as unmeasured in the generated result report.
+
+Evaluation metrics are the normalized root-mean-square error (NRMSE), spectral correlation, spectral angle, response rank, and condition number. The spectral angle is
+\begin{equation}
+ \theta=\cos^{-1}\left(\frac{\mathbf{x}^{T}\widehat{\mathbf{x}}}{\|\mathbf{x}\|_2\|\widehat{\mathbf{x}}\|_2}\right).
+\end{equation}
+The results are interpreted as software and architecture evidence unless measured calibration data are supplied.
+
+\section{Results}
+Table~\ref{tab:results} summarizes the supplied upconversion demonstration. The response rank equals the number of reconstructed bins, indicating that the synthetic response matrix spans the modeled 36-dimensional input space. The condition number is finite but nontrivial, showing that noise amplification and calibration quality remain important.
+
+\begin{table}[t]
+\caption{Synthetic SWIR upconversion reconstruction demonstration.}
+\label{tab:results}
+\centering
+\begin{tabular}{lc}
+\toprule
+Quantity & Value\\
+\midrule
+Input spectral range & 1200--1700 nm\\
+Input bins & 36\\
+Pixels $\times$ bias states & $12\times5$\\
+Total measurements & 60\\
+Response rank & 36\\
+Condition number & 40.193\\
+NRMSE divided by mean & 0.07539\\
+Spectral correlation & 0.99827\\
+Spectral angle & $2.6579^{\circ}$\\
+Maximum expected CCD signal & 15362.472 electrons\\
+CCD saturation & Not reached\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The dual-converter package broadens the architecture beyond a single upconversion branch. Electronic selection provides six fixed-emission channels, while the mode control selects downconversion or upconversion operation. This arrangement permits a detector subsystem to be matched to different wavelength bands without a rotating filter wheel. The architecture also separates channel selection from continuous spectral tuning: the command voltage selects a film window and does not continuously tune one QD film.
+
+The broader virtual-QD validation artifacts report 73 of 73 software and mathematical checks passing in a frozen MATLAB release configuration. These checks cover conservation, limiting behavior, repeatability, unit transformations, scope gating, and MATLAB/Simulink agreement. They should not be interpreted as universal experimental accuracy. In particular, the converter demonstration uses synthetic film, detector, efficiency, response, and noise curves.
+
+\section{Discussion}
+The results indicate that QD conversion can provide a useful computational-spectroscopy measurement operator when multiple response states are available. The response rank result is particularly important: a detector with many pixels does not automatically provide many independent spectral measurements, and rank must be evaluated after the complete optical and electronic model is assembled. Likewise, the condition number provides an early warning that a reconstruction may be sensitive to calibration error even when the noiseless synthetic reconstruction is accurate.
+
+The voltage-selected architecture offers a practical system-level abstraction. Fixed-emission films can be selected electronically, allowing the detector path to be reused across several operating bands. The cost is that the channels must be independently characterized and the switching boundaries must be designed with adequate hysteresis. Quantitative performance will depend on measured emission spectra, conversion efficiency, detector quantum efficiency, optical cross-talk, background, and noise.
+
+\section{Limitations and Calibration Requirements}
+The current results are simulation results. The delivered response family is synthetic and must be replaced with measured calibration before fabrication, hardware-performance, or quantitative sensing claims are made. Required calibration data include the response of every pixel and bias state, film emission and conversion efficiency, detector spectral response, optical transmission, background, and noise statistics.
+
+The QD physics model uses effective approximations and does not fully represent multiband valence structure, atomistic interfaces, nonspherical confinement, fine structure, alloy disorder, ligand orbitals, blinking, spectral diffusion, charge-state dynamics, non-Markovian phonons, or full Poisson--Schrödinger self-consistency. The ensemble model assumes independent dots and a spatially uniform undepleted pump; reabsorption, concentration quenching, multiple scattering, and energy transfer are not included. Consequently, model outputs should be treated as scope-aware predictions and design guidance rather than confidence intervals or certification.
+
+\section{Conclusion}
+A MATLAB/Simulink framework for QD wavelength conversion and spectral imaging has been presented. The framework links QD optical and kinetic modeling to detector observation and inverse spectral reconstruction. A synthetic SWIR demonstration reconstructs 36 spectral bins from 60 pixel/bias measurements with full response rank, 0.9983 spectral correlation, and a 2.66-degree spectral angle. A complementary voltage-selected dual-converter architecture supplies six nominal emission channels between 470 nm and 1410 nm. The principal value of the framework is its modularity and explicit calibration boundary: it supports algorithm development, architecture comparison, and experiment planning while making clear that hardware claims require measured response data.
+
+\section*{Acknowledgment}
+The author acknowledges the open-source MATLAB and Simulink ecosystem used to implement and organize this research software. Repository artifacts, scripts, models, and result summaries are available at \url{https://github.com/jyothiprakash392/quantum-dot-spectral-imaging}.
+
+\begin{thebibliography}{00}
+\bibitem{brus} L. E. Brus, ``Electron--electron and electron--hole interactions in small semiconductor crystallites: The size dependence of the lowest excited electronic state,'' \emph{J. Chem. Phys.}, vol. 80, no. 9, pp. 4403--4409, 1984, doi: 10.1063/1.447218.
+\bibitem{varshni} Y. P. Varshni, ``Temperature dependence of the energy gap in semiconductors,'' \emph{Physica}, vol. 34, no. 1, pp. 149--154, 1967, doi: 10.1016/0031-8914(67)90062-6.
+\bibitem{yu} W. W. Yu, L. Qu, W. Guo, and X. Peng, ``Experimental determination of the extinction coefficient of CdTe, CdSe, and CdS nanocrystals,'' \emph{Chem. Mater.}, vol. 15, no. 14, pp. 2854--2860, 2003, doi: 10.1021/cm034081k.
+\bibitem{leatherdale} C. A. Leatherdale, C. B. Mikhael, M. G. Bawendi, and F. A. K. M. Dabbousi, ``Photoconductivity in CdSe quantum dot solids,'' \emph{J. Phys. Chem. B}, vol. 106, no. 31, pp. 7619--7622, 2002, doi: 10.1021/jp025698c.
+\bibitem{brennan} M. C. Brennan \emph{et al.}, ``Size-dependent properties of CsPbBr$_3$ perovskite nanocrystals,'' \emph{J. Am. Chem. Soc.}, 2017, doi: 10.1021/jacs.7b05683.
+\bibitem{moreels} I. Moreels \emph{et al.}, ``Size-dependent optical properties of colloidal PbS quantum dots,'' \emph{ACS Nano}, vol. 3, no. 10, pp. 3023--3030, 2009, doi: 10.1021/nn900863a.
+\bibitem{repo} J. Prakash, ``Quantum dot wavelength-conversion spectral imaging,'' GitHub repository, 2026. [Online]. Available: \url{https://github.com/jyothiprakash392/quantum-dot-spectral-imaging}
+\end{thebibliography}
+
+\end{document}
