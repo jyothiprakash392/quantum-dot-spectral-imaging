@@ -7,7 +7,7 @@ The intended camera architecture uses a wavelength-conversion channel in front o
 ## Start here
 
 1. Read [the connected math and code guide](docs/Quantum_Dots_Connected_Math_Guide.docx) for the mathematical flow, methodology, diagrams, result examples, and systematic explanations of the MATLAB files.
-2. For a detailed, 12-page IEEE-style report, read the [research paper (Word)](docs/IEEE_Quantum_Dot_Wavelength_Conversion_Paper.docx) or its [PDF](docs/IEEE_Quantum_Dot_Wavelength_Conversion_Paper.pdf). It connects the QD and detector math, explains the two converter branches and selector, includes methodology and Simulink diagrams, reports results with evidence labels, and maps the MATLAB files by package. Results remain clearly identified as simulated, software-validated, literature-comparison, or experimentally calibrated.
+2. For a detailed, 10-page IEEE-style report of the completed work, read the [research paper (Word)](docs/IEEE_Quantum_Dot_Wavelength_Conversion_Paper.docx) or its [PDF](docs/IEEE_Quantum_Dot_Wavelength_Conversion_Paper.pdf). It follows the math from input wavelength and QD transitions through detector measurements to spectral reconstruction, explains both converter branches, and includes methodology diagrams and results. The report distinguishes simulated results and software checks from physical measurements.
 3. Choose one of the three packages below. Each is kept self-contained so its MATLAB entry points, model files, source, and results stay together.
 4. Use the package README and its start script for that branch.
 
